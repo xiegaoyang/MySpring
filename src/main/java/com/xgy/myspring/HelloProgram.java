@@ -10,7 +10,7 @@ public class HelloProgram {
 
     public static void main(String[] args) {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         HelloWorldService service = (HelloWorldService) context.getBean("helloWorldService");
 

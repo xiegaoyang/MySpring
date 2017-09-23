@@ -1,0 +1,42 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/aop
+                        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <bean id="springHelloWorld"
+          class="com.xgy.myspring.helloworld.impl.SpringHelloWorld"></bean>
+
+    <bean id="strutsHelloWorld"
+          class="com.xgy.myspring.helloworld.impl.StrutsHelloWorld"></bean>
+
+
+    <bean id="helloWorldService"
+          class="com.xgy.myspring.helloworld.HelloWorldService">
+        <property name="helloWorld" ref="strutsHelloWorld"/>
+    </bean>
+
+
+    <!--测试AOP-->
+    <!-- 配置DAO -->
+    <bean id="userManager" class="com.xgy.myspring.aop.UserManagerImpl"/>
+    <!--<bean id="xmlHandler" class="com.xgy.myspring.aop.XMLAdvice" />-->
+    <!--<aop:config>-->
+    <!--<aop:aspect id="aspect" ref="xmlHandler">-->
+    <!--<aop:pointcut id="pointUserMgr" expression="execution(* com.xgy.myspring.aop.*.find*(..))"/>-->
+    <!--<aop:before method="doBefore"  pointcut-ref="pointUserMgr"/>-->
+    <!--<aop:after method="doAfter"  pointcut-ref="pointUserMgr"/>-->
+    <!--<aop:around method="doAround"  pointcut-ref="pointUserMgr"/>-->
+    <!--<aop:after-returning method="doReturn"  pointcut-ref="pointUserMgr"/>-->
+    <!--<aop:after-throwing method="doThrowing" throwing="ex" pointcut-ref="pointUserMgr"/>-->
+    <!--</aop:aspect>-->
+    <!--</aop:config>-->
+
+
+    <!-- 启用AspectJ对Annotation的支持 -->
+    <aop:aspectj-autoproxy/>
+    <bean id="aspcejHandler" class="com.xgy.myspring.aop.AspceJAdvice"/>
+
+</beans>
